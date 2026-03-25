@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Preta ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* LOADER */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    #loader h1 {
+      color: #ff4d6d;
+      font-size: 2rem;
+      animation: pulse 1.5s infinite;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, #000, #1a1a1a);
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff4d6d;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .mensagem {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      max-width: 600px;
+    }
+
+    .heart {
+      position: fixed;
+      color: #ff4d6d;
+      animation: subir linear infinite;
+    }
+
+    @keyframes subir {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- TELA DE CARREGAMENTO -->
+<div id="loader">
+  <h1>Preparando uma surpresa pra você... 💌</h1>
+</div>
+
+<header>
+  <h1>Feliz Aniversário, Minha Preta ❤️</h1>
+  <p>Clique abaixo, tenho algo especial pra você...</p>
+  <button onclick="mostrarSurpresa()">Começar 💌</button>
+</header>
+
+<section id="surpresa" style="display:none;">
+  <h2>Nossa História 📸</h2>
+
+  <div class="galeria">
+    <!-- TROQUE PELAS SUAS FOTOS -->
+    <img src="foto1.jpeg" onclick="abrir(this)">
+    <img src="foto2.jpeg" onclick="abrir(this)">
+    <img src="foto3.jpeg" onclick="abrir(this)">
+    <img src="foto4.jpeg" onclick="abrir(this)">
+    <img src="foto5.jpeg" onclick="abrir(this)">
+    <img src="foto6.jpeg" onclick="abrir(this)">
+    <img src="foto7.jpeg" onclick="abrir(this)">
+  </div>
+
+  <p class="mensagem">
+    Minha preta, cada momento ao seu lado é único.
+    Você é meu sorriso fácil, minha paz e meu amor.
+    Que Deus continue abençoando sua vida e nosso relacionamento.
+    Eu te amo ❤️
+  </p>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="fechar()">
+  <img id="imgGrande">
+</div>
+
+<script>
+  // SUMIR LOADER
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+    }, 2000);
+  });
+
+  function mostrarSurpresa() {
+    document.getElementById('surpresa').style.display = 'block';
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function abrir(img) {
+    document.getElementById('lightbox').style.display = 'flex';
+    document.getElementById('imgGrande').src = img.src;
+  }
+
+  function fechar() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+
+  // CHUVA DE CORAÇÕES MELHORADA
+  function criarCoracao() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤';
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 25 + 10 + 'px';
+    heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+    heart.style.opacity = Math.random();
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  setInterval(criarCoracao, 150);
+</script>
+
+</body>
+</html>
